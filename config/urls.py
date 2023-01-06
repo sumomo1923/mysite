@@ -15,10 +15,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from eval import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('eval/', views.index),
+    path('eval/', include('eval.urls')),
+    path('common/', include('common.urls')),
+    path('', views.index, name='index'),  # '/' 에 해당되는 path
 ]
