@@ -6,4 +6,12 @@
 {% endfor %}
 </ul>
 
-<a href="{% url 'eval:detail' question.id %}">Vote again?</a>
+<form action="{% url 'eval:detail' question.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="현재 학습자 평가 수정하기">
+</form>
+
+<form action="{% url 'eval:detail' question.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="다음 학습자 평가하기">
+</form>

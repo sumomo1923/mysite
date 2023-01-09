@@ -1,13 +1,32 @@
-eval/templates/eval/detail.html¶
 <form action="{% url 'eval:vote' question.id %}" method="post">
 {% csrf_token %}
 <fieldset>
-    <legend><h1>{{ question.question_text }}</h1></legend>
+    <h1><center>{{ question.question_text }}</center></h1>
+</fieldset>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
     {% endfor %}
-</fieldset>
-<input type="submit" value="Vote">
+
+<br><input type="submit" value="평가 완료">
 </form>
+
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th><center>단어 번호</center></th>
+            <th><center>유창성</center></th>
+            <th><center>명료성</center></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if word list %}
+            {% for word in word_list %}
+            <td><center>{{ word.word_text }}</center></td>
+           {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
