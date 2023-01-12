@@ -1,8 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <form action="{% url 'eval:vote' question.id %}" method="post">
-{% csrf_token %}
-<fieldset>
-    <h1><center>{{ question.question_text }}</center></h1>
-</fieldset>
+    {% csrf_token %}
+    <fieldset>
+        <br><h1><center>{{ question.question_text }}</center></h1></br>
+    </fieldset>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% for choice in question.choice_set.all %}
         <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
@@ -11,3 +14,103 @@
 
 <br><input type="submit" value="평가 완료">
 </form>
+{% endblock %}
+
+
+    <fieldset>
+        <br><h1><center>{{ question.question_text }}</center></h1></br>
+    </fieldset>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
+    {% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'eval:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <br><h1><center>{{ question.question_text }}</center></h1></br>
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}
+        </label>
+    <br>
+    {% endfor %}
+    <br><input type="submit" value="평가 완료">
+</form>
+
+
+<br><h2><center><strong>한국어 학습자 발음 평가 시스템</center></h2><br>
+<p><center>안녕하십니까?<br>본 연구에 참여해 주셔서 감사합니다.<br>
+    한국어 학습자 발화를 듣고 발음을 평가하시면 됩니다.<br>
+    ......(수정 필요)......<br></center></p><br>
+
+   <center><audio autoplay controls>
+        </center><source src="./audio/q.mp3" type="audio/mp3">
+    </audio></center>
+
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th><center>번호</center></th>
+            <th><center>학습자 발화 파일</center></th>
+            <th><center>평가</center></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+            {% for question in question_list %}
+            <tr>
+                <td><center>{{ question.question_text }}</center></td>
+                </td>
+                <td>
+                    <form action="{% url 'eval:vote' qusteion.id %}" method="post">
+                        {% csrf_token %}
+                        <center><input type="submit" value="평가하기"></center>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+        <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if question_list.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in question_list.paginator.page_range %}
+        {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+        {% if page_number == question_list.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if question_list.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+</div>
+{% endblock %}
