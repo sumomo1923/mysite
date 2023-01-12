@@ -11,22 +11,3 @@
 
 <br><input type="submit" value="평가 완료">
 </form>
-
-<div class="container my-3">
-    <table class="table">
-        <thead>
-        <tr class="table-dark">
-            <th><center>단어 번호</center></th>
-            <th><center>유창성</center></th>
-            <th><center>명료성</center></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% if word list %}
-            {% for word in word_list %}
-            <td><center>{{ word.word_text }}</center></td>
-           {% endfor %}
-        {% endif %}
-        </tbody>
-    </table>
-</div>

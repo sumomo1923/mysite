@@ -16,7 +16,6 @@ def index(request):
 def detail(request, question_id):
     try:
         question = Question.objects.get(pk=question_id)
-        word_list=Word.objects.order_by('-pub_date')
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
     return render(request, 'eval/detail.html', {'question': question})
