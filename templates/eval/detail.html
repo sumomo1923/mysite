@@ -22,46 +22,6 @@
             <td><center><center><audio autoplay controls></center>
                 <source src="C:\projects\mysite\audio\q.mp3" type="audio/mp3">
                 </audio></center></center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-                <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" ho>
-                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
-        </tr>
-        <tr>
-            <td><center>단어2</center></td>
-            <td><center>아이</center></td>
-            <td><center>단모음</center></td>
-            <td><center><center><audio autoplay controls>
-</center><source src="./audio/q.mp3" type="audio/mp3">
-</audio></center></center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
-        </tr>
-        <tr>
-            <td><center>단어3</center></td>
-            <td><center>소개</center></td>
-            <td><center>단모음</center></td>
-            <td><center><center><audio autoplay controls>
-</center><source src="./audio/q.mp3" type="audio/mp3">
-</audio></center></center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
-            <td><center>{% for choice in question.choice_set.all %}
-        <br><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}</center></td>
         </tr>
     </tbody>
     {% endblock %}

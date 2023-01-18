@@ -1,5 +1,4 @@
 from django.db import models
-
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -19,13 +18,16 @@ class Choice(models.Model):
         return self.choice_text
 
 class Eval_item_word(models.Model):
-    word_text = models.CharField(max_length=200)
+    word_sentence = models.CharField(max_length=200)
+    eval_component = models.CharField(max_length=200)
+    eval_word = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.word_text
+        return self.eval_word
 
 class Eval_item_sentence(models.Model):
     sentence_text = models.CharField(max_length=200)
 
     def __str__(self):
         return self.sentence_text
+
