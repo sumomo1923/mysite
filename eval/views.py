@@ -13,6 +13,7 @@ def index(request):
     context = {'question_list': page_obj}
     return render(request, 'eval/index.html', context)
 
+
 def detail(request,question_id):
     try:
         question = Question.objects.get(pk=question_id)

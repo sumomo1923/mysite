@@ -17,17 +17,11 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
 
-class Eval_item_word(models.Model):
-    word_sentence = models.CharField(max_length=200)
-    eval_component = models.CharField(max_length=200)
-    eval_word = models.CharField(max_length=200)
+class Sentence(models.Model):
+    item = models.CharField("sentence_text", max_length=200)
+    component = models.CharField("q", max_length=200)
+    word = models.CharField("d", max_length=200)
 
     def __str__(self):
-        return self.eval_word
-
-class Eval_item_sentence(models.Model):
-    sentence_text = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.sentence_text
+        return self.word
 
