@@ -4,24 +4,30 @@
 <br><h2><center><strong>학습자 번호 : {{ question.question_text }}</center></h2><br>
 <div class="container my-3">
 <table class="table">
-<thead>
-<tr class="table-dark">
-    <th><center>평가 항목 번호</center></th>
-    <th><center>평가 단어/문장</center></th>
-    <th><center>평가 요소</center></th>
-    <th><center>학습자 발화 파일</center></th>
-    <th><center>평가1</center></th>
-    <th><center>평가2</center></th>
-</tr>
-</thead>
+    <thead>
+    <tr class="table-dark">
+        <th>평가 항목 번호</th>
+        <th>평가 단어/문장</th>
+        <th>평가 요소</th>
+        <th>학습자 발화 파일</th>
+        <th>평가1</th>
+        <th>평가2</th>
+    </tr>
+    </thead>
     <tbody>
+    {% if item_list %}
+        {% for item in item_list %}
         <tr>
-            <td><center>단어1</center></td>
-            <td><center>오이</center></td>
-            <td><center>단모음</center></td>
-            <td><center><center><audio autoplay controls></center>
-                <source src="C:\projects\mysite\audio\q.mp3" type="audio/mp3">
-                </audio></center></center></td>
+            <td>{{ item.item_type }}</td>
+            <td>{{ item.eval_component }}</td>
+            <td>{{ item.item_text }}</td>
+            <td><audio controls>
+                <source src="{{ item.audio_file.url }}" type="audio/mp3">
+            </audio></td>
         </tr>
+        {% endfor %}
+    {% endif %}
     </tbody>
+</table>
+
     {% endblock %}
